@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<h2>Detalles de alumno</h2>
+		<div class="card">
+			<div class="card-header text-white bg-secondary">Datos Alumno</div>
+			<div class="card-body">
+				<ul class="list-group">
+					<li class="list-group-item" th:text="'DNI: '+${alumno.dni}"></li>
+					<li class="list-group-item" th:text="'Nombres: '+${alumno.nombres}"></li>
+					<li class="list-group-item" th:text="'Apellidos: '+${alumno.apellidos}"></li>
+				</ul>
+				<a th:href="@{/alumnos/lista}" class="btn btn-success">Regresar</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header text-white bg-secondary">Matriculas</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<div th:if="${#lists.isEmpty(alumno.matriculas)}" class="alert alert-info my-4" 
+					th:text="'El alumno '+${alumno.nombres}+' '+${alumno.apellidos}+' no tiene matricula'">
+					</div>
+					<table th:if="${not #lists.isEmpty(alumno.matriculas)}" class="table table-striped">
+						<thead class="text-white bg-dark">
+							<tr>
+								<th>Id</th>
+								<th>Grado</th>
+								<th>Fecha</th>
+								<th>Detalle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="matricula:${alumno.matriculas}">
+								<td th:text="${matricula.id}"></td>
+								<td th:text="${matricula.grado.nombre}"></td>
+								<td th:text="${matricula.fechaMatricula}"></td>
+								<td><a class="btn btn-success" th:href="@{'/matriculas/details/'+${matricula.id}}">Detalle</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

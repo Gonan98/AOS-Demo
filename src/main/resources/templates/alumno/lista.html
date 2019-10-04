@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-secondary">Buscar Alumnos</div>
+			<div class="card-body">
+				<div class="form-inline">
+					<form th:action="@{/alumnos/searchByApellidos}" method="get">
+						<div class="row">
+							<div class="col-8">
+								<input id="inputApellido" type="text" class="form-control" name="apellido" placeholder="Buscar por Apellido">
+							</div>
+							<div class="col">
+								<button type="submit" class="btn btn-danger">Buscar</button>
+							</div>
+						</div>
+					</form>
+					<form th:action="@{/alumnos/search}" method="get">
+						<div class="row">
+							<div class="col-8">
+								<input id="inputDni" type="text" class="form-control" name="dni" placeholder="Buscar por DNI">
+							</div>
+							<div class="col">
+								<button type="submit" class="btn btn-danger">Buscar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="table responsive">
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th>Id</th>
+								<th>Nombres</th>
+								<th>Apellidos</th>
+								<th>DNI</th>
+								<th>Detalle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="alumno:${listadoAlumnos}">
+								<td th:text="${alumno.id}"></td>
+								<td th:text="${alumno.nombres}"></td>
+								<td th:text="${alumno.apellidos}"></td>
+								<td th:text="${alumno.dni}"></td>
+								<td><a th:href="@{'/alumnos/details/'+${alumno.id}}" class="btn btn-success">Detalle</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

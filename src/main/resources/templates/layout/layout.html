@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="utf-8">
+	<title>Colegio App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta name="title" content="ColegioApp"/>
+	<meta name="description" content="App Web para Colegios"/>
+	<meta name="author" content="Andre Gonzales Soncco"/>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggerColegioApp" aria-controls="navbarToggerColegioApp" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarToggerColegioApp">
+				<a class="navbar-brand" th:href="@{/}">Colegio App</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link text-white" href="#Listado" th:href="@{/alumnos/lista}">Alumnos</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="container text-center">
+			<h1>Colegio App</h1>
+		</div>
+		
+		<div class="alert alert-success" th:if="${success!=null}" th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error!=null}" th:text="${error}"></div>
+		<div class="alert alert-info" th:if="${info!=null}" th:text="${info}"></div>
+	</header>
+	
+	<div class="container"></div>
+	<footer th:fragmentor="footer" class="container">
+		<p>Derechos Reservados <a href="http://www.upc.edu.pe" target=_blank>UPC 2019-2</a></p>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
+	</footer>
+</body>
+</html>
